@@ -30,12 +30,14 @@ class _TextComposerState extends State<TextComposer> {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: <Widget>[
-          IconButton(icon: Icon(Icons.photo_camera),
-          onPressed: () async {
-            final File imgFile = await ImagePicker.pickImage(source: ImageSource.camera);
-            if(imgFile == null) return;
-            widget.sendMessage(imgFile: imgFile);
-          }),
+          IconButton(
+              icon: Icon(Icons.photo_camera),
+              onPressed: () async {
+                final File imgFile =
+                    await ImagePicker.pickImage(source: ImageSource.camera);
+                if (imgFile == null) return;
+                widget.sendMessage(imgFile: imgFile);
+              }),
           Expanded(
               child: TextField(
             controller: _controller,
