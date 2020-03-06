@@ -78,7 +78,8 @@ class _ChatScreenState extends State<ChatScreen> {
     if (imgFile != null) {
       StorageUploadTask task = FirebaseStorage.instance
           .ref()
-          .child(DateTime.now().millisecondsSinceEpoch.toString())
+          .child(_currentUser.uid)
+          .child(DateTime.now().millisecondsSinceEpoch.toString() + _currentUser.uid)
           .putFile(imgFile);
 
       setState(() {
@@ -151,10 +152,8 @@ class _ChatScreenState extends State<ChatScreen> {
                       itemCount: documents.length,
                       reverse: true,
                       itemBuilder: (context, index) {
-                        return ChatMessage(
-                          documents[index].data,
-                          documents[index].data['uid'] == _currentUser?.uid
-                        );
+                        return ChatMessage(documents[index].data,
+                            documents[index].data['uid'] == _currentUser?.uid);
                       },
                     );
                 }
